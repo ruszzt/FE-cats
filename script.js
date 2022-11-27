@@ -1,6 +1,7 @@
 const container = document.querySelector("main");
 const addForm = document.forms.addForm;
 const popupBlock = document.querySelector(".popup-wrapper");
+const cardShowBlock = document.querySelector(".cardShowBlock");
 
 let user = "ruszzt";
 // let user = localStorage.getItem("ruszzt");
@@ -12,6 +13,7 @@ let user = "ruszzt";
 const createCard = function(cat, parent) {
     const card = document.createElement("div");
     card.className = "card";
+
 
     const img = document.createElement("div");
     img.className = "card-pic";
@@ -25,6 +27,7 @@ const createCard = function(cat, parent) {
 
     const name = document.createElement("h3");
     name.innerText = cat.name;
+    
 
     const del = document.createElement("button");
     del.innerText = "аннигилировать";
@@ -33,6 +36,8 @@ const createCard = function(cat, parent) {
         let id = e.target.id;
         deleteCat(id, card);
     });
+    
+    
 
     card.append(img, name, del);
     parent.append(card);
@@ -110,3 +115,14 @@ addForm.addEventListener("submit", function(e) {
     }
     addCat(body);
 });
+
+
+
+// cardShowBlock.querySelector(".cardShow__close").addEventListener("click", function() {
+//     cardShowBlock.classList.remove("active");
+// });
+
+// document.querySelector(".card").addEventListener("click", function(e) {
+//     e.preventDefault();
+//     cardShowBlock.classList.add("active");
+// })

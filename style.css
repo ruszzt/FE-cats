@@ -1,6 +1,10 @@
 body {
     margin: 0;
     font-family: sans-serif;
+    background-image: url("https://krasivosti.pro/uploads/posts/2021-04/1617696979_47-p-koshachi-oboi-kot-na-stole-51.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 a {
     text-decoration: none;
@@ -10,7 +14,7 @@ a {
     width: 1000px;
     margin: auto;
     min-height: 100vh;
-    background: lightsalmon;
+    background: rgb(224, 197, 186);
     display: grid;
     gap: 30px;
     grid-template-rows: 70px 1fr 60px;
@@ -55,6 +59,51 @@ main {
 .card h3 {
     text-align: center;
 }
+.cardShowBlock {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0008;
+    backdrop-filter: blur(3px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    /* overflow: hidden;
+    overflow-y: auto; */
+    /* -webkit-overflow-scrolling: touch; */
+}
+.cardShowBlock.active {
+    display: flex;
+}
+.cardShow {
+    width: 300px;
+    padding: 20px;
+    background-color: rgb(224, 197, 186);
+    position: relative;
+}
+.cardShow__close {
+    width: 30px;
+    height: 30px;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.cardShow__close:hover {
+    background-color: #222;
+    color: #fff;
+    border-color: #222;
+}
+.cardShow__close::after {
+    content: "\274C";
+    margin-bottom: 2px;
+}
 .popup-wrapper {
     position: fixed;
     top: 0;
@@ -73,8 +122,10 @@ main {
 .popup {
     width: 300px;
     padding: 20px;
-    background-color: #fff;
+    background-color: rgb(224, 197, 186);
     position: relative;
+    transition: transform 0.15s ease 0s, opacity 0.15s ease 0s;
+    transform: scale(1.2);
 }
 .popup__close {
     width: 30px;
