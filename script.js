@@ -37,10 +37,19 @@ const createCard = function(cat, parent) {
         deleteCat(id, card);
     });
     
-    
 
     card.append(img, name, del);
     parent.append(card);
+
+    let catCard = document.querySelectorAll(".card");
+    
+    for (let i = 0; i < catCard.length; i++) {
+        
+        catCard[i].addEventListener("click", function() {
+            cardShowBlock.classList.add("active");
+        })
+        
+    }
 }
 
 fetch(`https://sb-cats.herokuapp.com/api/2/${user}/show`)
@@ -118,9 +127,9 @@ addForm.addEventListener("submit", function(e) {
 
 
 
-// cardShowBlock.querySelector(".cardShow__close").addEventListener("click", function() {
-//     cardShowBlock.classList.remove("active");
-// });
+cardShowBlock.querySelector(".cardShow__close").addEventListener("click", function() {
+    cardShowBlock.classList.remove("active");
+});
 
 // document.querySelector(".card").addEventListener("click", function(e) {
 //     e.preventDefault();

@@ -78,7 +78,7 @@ main {
     display: flex;
 }
 .cardShow {
-    width: 300px;
+    width: 340px;
     padding: 20px;
     background-color: rgb(224, 197, 186);
     position: relative;
@@ -86,7 +86,9 @@ main {
 .cardShow__close {
     width: 30px;
     height: 30px;
-    border: 1px solid;
+    /* border: 1px solid;
+    border-color: rgba(110, 84, 75, 0.788);  */
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,13 +98,77 @@ main {
     right: 10px;
 }
 .cardShow__close:hover {
-    background-color: #222;
-    color: #fff;
+    background-color: rgba(110, 84, 75, 0.788);
+    color: rgb(224, 197, 186);
     border-color: #222;
+    /* border: solid; */
+    border-radius: 5px;
 }
 .cardShow__close::after {
     content: "\274C";
     margin-bottom: 2px;
+}
+.cardShow__content {
+    display: grid;
+    grid-template-rows: 30px auto 20px 20px auto;
+    gap: 10px;
+}
+
+.cardShow__logo::after {
+    content: "\1F3A9";
+}
+.cardBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cardBtnChange, .cardBtnDelete {
+    height: 30px;
+    padding-bottom: 2px;
+    border: 1px solid; 
+    border-radius: 5px;
+    border-color: rgba(110, 84, 75, 0.788);
+    background-color: rgb(224, 197, 186);
+    font-weight: bold;
+    color: #222;
+}
+.cardBtnChange:hover {
+    color:#fff;
+    background-color: rgba(110, 84, 75, 0.788);
+}
+.cardBtnDelete:hover {
+    color:#fff;
+    background-color: rgba(110, 84, 75, 0.788);
+}
+.catName, .catImg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.catImg {
+    display: flex;
+    width: 300px;
+    height: 350px;
+    margin: 20px;
+    background-color: #fff;
+}
+.catAge {
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+    font-weight: bold;
+}
+.catDescription {
+    display: flex;
+    background-color: #fff;
+    border-radius: 5px;
+    border: solid;
+    padding: 5px;
+    font-family: sans-serif;
+    border-color:  rgb(138, 106, 94);
 }
 .popup-wrapper {
     position: fixed;
@@ -130,7 +196,8 @@ main {
 .popup__close {
     width: 30px;
     height: 30px;
-    border: 1px solid;
+    /* border: 1px solid; */
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,9 +207,10 @@ main {
     right: 10px;
 }
 .popup__close:hover {
-    background-color: #222;
-    color: #fff;
+    background-color: rgba(110, 84, 75, 0.788);
+    color: rgb(224, 197, 186);
     border-color: #222;
+    border-radius: 5px;
 }
 .popup__close::after {
     content: "\274C";
