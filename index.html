@@ -10,7 +10,7 @@
 <body>
     <div class="wrapper">
         <header>
-            <a href="" class="logo">Pretty Cats</a>
+            <a href="" class="logo">Suspicious Cats</a>
             <nav>
                 <a href="" class="btn" id="add">Add</a>
             </nav>
@@ -19,6 +19,30 @@
         <footer>
             ©2022 Frontend 8 - Pretty cats
         </footer>
+    </div>
+    <div class="popup-wrapper">
+        <!-- <div class="popup">
+            <div class="popup__close"></div>
+            <div class="popup__content"></div>
+        </div> -->
+        <div class="popup">
+            <div class="popup__close"></div>
+            <div class="popup__content">
+                <h2>добавить подозрительного кота</h2>
+                <form id="addForm">
+                    <input type="text" name="name" placeholder="Погремуха">
+                    <input type="number" name="id" placeholder="id">
+                    <input type="text" name="img_link" placeholder="ссылка на фото">
+                    <input type="number" name="age" placeholder="Возраст" min="0" max="30">
+                    <input type="number" name="rate" placeholder="Рейтинг" min="0" max="10">
+                    <label for="fav">
+                        <input type="checkbox" name="favourite"> особо подозрителен
+                    </label>
+                    <textarea name="description" placeholder="Описание"></textarea>
+                    <button type="submit">добавить</button>
+                </form>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
