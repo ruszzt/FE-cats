@@ -56,6 +56,10 @@ main {
     background-color: #222;
     height: 180px;
 }
+.card-pic:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
 .card h3 {
     text-align: center;
 }
@@ -192,6 +196,10 @@ main {
     position: relative;
     transition: transform 0.15s ease 0s, opacity 0.15s ease 0s;
     transform: scale(1.2);
+    display: none;
+}
+.popup.active {
+    display: block;
 }
 .popup__close {
     width: 30px;
@@ -216,7 +224,7 @@ main {
     content: "\274C";
     margin-bottom: 2px;
 }
-#addForm {
+form {
     display: grid;
     gap: 15px;
 }

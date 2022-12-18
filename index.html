@@ -25,7 +25,7 @@
             <div class="popup__close"></div>
             <div class="popup__content"></div>
         </div> -->
-        <div class="popup">
+        <div class="popup popup-add">
             <div class="popup__close"></div>
             <div class="popup__content">
                 <h2>добавить подозрительного кота</h2>
@@ -40,6 +40,24 @@
                     </label>
                     <textarea name="description" placeholder="Описание"></textarea>
                     <button type="submit">добавить</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup-upd">
+            <div class="popup__close"></div>
+            <div class="popup__content">
+                <h2>изменить подозрительного кота</h2>
+                <form id="updForm">
+                    <input type="text" name="name" placeholder="Погремуха">
+                    <input type="number" name="id" placeholder="id" disabled>
+                    <input type="text" name="img_link" placeholder="ссылка на фото">
+                    <input type="number" name="age" placeholder="Возраст" min="0" max="30">
+                    <input type="number" name="rate" placeholder="Рейтинг" min="0" max="10">
+                    <label for="fav">
+                        <input type="checkbox" name="favourite"> особо подозрителен
+                    </label>
+                    <textarea name="description" placeholder="Описание"></textarea>
+                    <button type="submit">изменить</button>
                 </form>
             </div>
         </div>

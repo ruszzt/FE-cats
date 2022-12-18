@@ -1,14 +1,17 @@
 const container = document.querySelector("main");
 const addForm = document.forms.addForm;
+const updForm = document.forms.updForm;
 const popupBlock = document.querySelector(".popup-wrapper");
+const popupAdd = popupBlock.querySelector(".popup-add");
+const popupUpd = popupBlock.querySelector(".popup-upd");
 const cardShowBlock = document.querySelector(".cardShowBlock");
 
-let user = "ruszzt";
-// let user = localStorage.getItem("ruszzt");
-// if (!user) {
-//     user = prompt("Введите имя пользователя")
-//     localStorage.setItem("ruszzt", user)
-// }
+// let user = "ruszzt";
+let user = localStorage.getItem("UserCat");
+if (!user) {
+    user = prompt("Введите имя пользователя")
+    localStorage.setItem("UserCat", user)
+}
 
 const createCard = function(cat, parent) {
     const card = document.createElement("div");
@@ -36,12 +39,20 @@ const createCard = function(cat, parent) {
         let id = e.target.id;
         deleteCat(id, card);
     });
-    
 
-    card.append(img, name, del);
+    const upd = document.createElement("button");
+    upd.innerText = "изменить";
+    upd.addEventListener("click", function(e) {
+        popupUpd.classList.add("active");
+        popupBlock.classList.add("active");
+        showForm(cat);
+        updForm.setAttribute("data-id", cat.id);
+    });
+
+    card.append(img, name, del, upd);
     parent.append(card);
 
-    let catCard = document.querySelectorAll(".card");
+    let catCard = document.querySelectorAll(".card-pic");
     
     for (let i = 0; i < catCard.length; i++) {
         
@@ -49,6 +60,19 @@ const createCard = function(cat, parent) {
             cardShowBlock.classList.add("active");
         })
         
+    }
+}
+
+const showForm = function(data) {
+    for (let i = 0; i < updForm.elements.length; i++) {
+        let el = updForm.elements[i];
+        if (el.name) {
+            if (el.type !== "checkbox") {
+                el.value = data[el.name] ? data[el.name] : "";
+            } else {
+                el.checked = data[el.name];
+            }
+        }
     }
 }
 
@@ -101,13 +125,20 @@ const deleteCat = function(id, tag) {
 }
 
 
-popupBlock.querySelector(".popup__close").addEventListener("click", function() {
-    popupBlock.classList.remove("active");
+popupBlock.querySelectorAll(".popup__close").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+        popupBlock.classList.remove("active");
+        btn.parentElement.classList.remove("active");
+        if (btn.parentElement.classList.contains("popup-upd")) {
+            updForm.dataset.id = "";
+        }
+    });
 });
 
 document.querySelector("#add").addEventListener("click", function(e) {
     e.preventDefault();
     popupBlock.classList.add("active");
+    popupAdd.classList.add("active");
 });
 
 
@@ -125,7 +156,36 @@ addForm.addEventListener("submit", function(e) {
     addCat(body);
 });
 
+updForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    let body = {};
 
+    for (let i = 0; i < this.elements.length; i++) {
+        let el = this.elements[i];
+        if (el.name) {
+            body[el.name] = el.name === "favourite" ? el.checked : el.value
+        }
+    }
+    delete body.id;
+    updCat(body, updForm.dataset.id);
+});
+
+const updCat = async function(obj, id) {
+    let res = await fetch(`https://sb-cats.herokuapp.com/api/2/${user}/update/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "appLication/json",
+        },
+        body: JSON.stringify(obj)
+    })
+    let answer = await res.json();
+    if (answer.message === "ok") {
+        updForm.reset();
+        updForm.dataset.id = "";
+        popupUpd.classList.remove("active");
+        popupBlock.classList.remove("active");
+    }
+}
 
 cardShowBlock.querySelector(".cardShow__close").addEventListener("click", function() {
     cardShowBlock.classList.remove("active");
